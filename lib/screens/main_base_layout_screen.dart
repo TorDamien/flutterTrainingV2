@@ -1,7 +1,4 @@
-import 'package:flutter_training/screens/home/home_screen.dart';
-import 'package:flutter_training/screens/kp/kp_screen.dart';
-
-import '../commons.dart';
+import 'package:flutter_training/commons.dart';
 
 part 'main_base_layout_controller.dart';
 

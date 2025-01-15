@@ -25,6 +25,10 @@ class GlobalBottomBar extends StatelessWidget {
           icon: Icon(Icons.dashboard),
           label: 'KP',
         ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.door_sliding),
+          label: 'Sliding',
+        ),
       ],
     );
   }

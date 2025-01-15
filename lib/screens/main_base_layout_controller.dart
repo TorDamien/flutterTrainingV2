@@ -7,6 +7,7 @@ abstract class MainBaseLayoutController extends State<MainBaseLayoutScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
     KpScreen(),
+    SlidingForecast(),
   ];
 
   void _onTabSelected(int index) {

@@ -1,4 +1,4 @@
-import '../../commons.dart';
+import 'package:flutter_training/commons.dart';
 
 part 'user_controller.dart';
 
