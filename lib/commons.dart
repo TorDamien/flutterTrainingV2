@@ -12,7 +12,7 @@ export 'package:flutter_training/screens/home/home_screen.dart';
 export 'package:flutter_training/screens/kp/kp_screen.dart';
 export 'package:flutter_training/models/kp_data_model.dart';
 export 'package:flutter_training/utils/custom_date_utils.dart';
-export 'package:flutter_training/services/kp_service.dart';
+export 'package:flutter_training/services/space_weather_service.dart';
 export 'package:flutter_training/widgets/kp_data_list.dart';
 export 'package:flutter_training/screens/sliding/sliding_forecast_screen.dart';
 

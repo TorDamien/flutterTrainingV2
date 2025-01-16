@@ -2,7 +2,7 @@ part of 'kp_screen.dart';
 
 abstract class KpController extends State<KpScreen> {
 
-  final KpService _kpService = KpService();
+  final SpeaceWeatherService _kpService = SpeaceWeatherService();
   List<KpData> _kpDataList = [];
   bool _isLoading = true;
 
