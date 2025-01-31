@@ -21,21 +21,34 @@ class SpeaceWeatherService {
     }
   }
 
-  Future<List<Map<String, dynamic>>> fetchForecastData() async {
+  Future<List<ForecastData>> fetchForecastData() async {
     try {
 
       final response = await http.get(Uri.parse(_urlForecastKp));
 
       if (response.statusCode == 200) {
-        final List<String> lines = response.body.split('\n');
-        final List<Map<String, dynamic>> forecastData = [];
 
+        final List<String> lines = response.body.split('\n');
+        final List<ForecastData> forecastData = [];
+        bool todayForecastPassed = false;
+        List months = ['jan', 'feb', 'mar', 'apr', 'may','jun','jul','aug','sep','oct','nov','dec'];
+        var CurrentDate = new DateTime.now();
+
+        final RegExp regex = RegExp(r'(\d{4})\s+([A-Za-z]+)\s+(\d{1,2})\s+(\d+)\s+(\d+)\s+(\d+)');
         for (final line in lines) {
-          if (line.startsWith('2')) { // A voir si on se contente de cette condition qu'il faudra actualiser en l'an 3000 sinon faut mettre un regex en place
-            final List<String> parts = line.split(' '); // 0 = année, 1 = mois, 2 = jour, 3 = radio flux, 4 = A index et 5 = Kp index
-            final String date = '${parts[2]} ${parts[1]}';
-            final int kp = int.parse(parts[5]);
-            forecastData.add({'date': date, 'kp': kp});
+          final matchRegexLine = regex.firstMatch(line);
+
+          print(matchRegexLine?.group(3)!);
+          if (matchRegexLine?.group(2)!.toLowerCase() == months[CurrentDate.month-1] && matchRegexLine?.group(3)! == DateTime.now().day.toString()) {
+            todayForecastPassed = true;
+          }
+
+          if (matchRegexLine != null && todayForecastPassed) {
+            final String mois = matchRegexLine.group(2)!;
+            final String jour = matchRegexLine.group(3)!;
+            final int kp = int.parse(matchRegexLine.group(6)!);
+
+            forecastData.add(ForecastData(mois: mois, jour: jour, kp: kp));
           }
         }
         return forecastData;

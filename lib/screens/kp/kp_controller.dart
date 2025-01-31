@@ -2,35 +2,49 @@ part of 'kp_screen.dart';
 
 abstract class KpController extends State<KpScreen> {
 
-  final SpeaceWeatherService _kpService = SpeaceWeatherService();
+  final CacheProvider _cacheProvider = CacheProvider();
   List<KpData> _kpDataList = [];
-  bool _isLoading = true;
+  List<ForecastData> _forecastDataList = [];
+  bool _isKpLoading = true;
+  bool _isForecastLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _loadData();
+    _loadKpData();
+    _loadForecastData();
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
-
-  Future<void> _loadData() async {
+  Future<void> _loadKpData() async {
     try {
-      List<KpData> data = await _kpService.fetchKpData();
+      List<KpData> data = await _cacheProvider.getKpData();
       setState(() {
         _kpDataList = data;
-        _isLoading = false;
+        _isKpLoading = false;
       });
     } catch(e) {
       setState(() {
-        _isLoading = false;
+        _isKpLoading = true;
       });
       if (kDebugMode) {
         print('Error lors du chargement des données: $e');
+      }
+    }
+  }
+
+  Future<void> _loadForecastData() async {
+    try {
+      List<ForecastData> data = await _cacheProvider.getForecastData();
+      setState(() {
+        _forecastDataList = data;
+        _isForecastLoading = false;
+      });
+    } catch(e) {
+      setState(() {
+        _isForecastLoading = true;
+      });
+      if (kDebugMode) {
+        print('Error while loading forecast data: $e');
       }
     }
   }
@@ -55,4 +69,5 @@ abstract class KpController extends State<KpScreen> {
       }
     }
   }
+
 }

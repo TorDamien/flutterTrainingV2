@@ -19,5 +19,15 @@ class KpData {
   String toString() {
     return 'KpData{time_tag: $time_tag, kp_index: $kp_index}';
   }
+}
+
+class KpCache {
+  final List<KpData> kpList;
+  final DateTime lastUpdated;
+
+  KpCache({
+    required this.kpList,
+    required this.lastUpdated,
+  });
 
 }
