@@ -5,9 +5,13 @@ abstract class MainBaseLayoutController extends State<MainBaseLayoutScreen> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
-    HomeScreen(),
+    VolPage(title: 'Vol Page'),
+    DronePage(title: 'Drone Page'),
     KpScreen(),
-    SlidingForecast(),
+    NotamPage(
+      url: 'https://sofia-briefing.aviation-civile.gouv.fr/sofia/pages/notamadminmenu.html',
+      title: 'Sofia-Briefing Notam',
+    ),
   ];
 
   void _onTabSelected(int index) {

@@ -16,18 +16,23 @@ class GlobalBottomBar extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: currentIndex,
       onTap: onTabSelected,
+      type: BottomNavigationBarType.fixed,
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
+          icon: Icon(Icons.flight_outlined),
+          label: 'Vol',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.discord_rounded),
+          label: 'Drone',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.dashboard),
           label: 'KP',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.door_sliding),
-          label: 'Sliding',
+          icon: Icon(Icons.notification_important),
+          label: 'Notam',
         ),
       ],
     );
